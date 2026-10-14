@@ -12,3 +12,13 @@ def mAFile():
     filePath = desktop/FileName
     filePath.touch()
 
+def multipleFinFol():
+    fileName = input("Enter the name of file wiht extension ")
+    folderName = input("Enter the name of folder ")
+    n = int(input("Enter number of file "))
+    desktop = Path.home() / "Desktop"
+    for i in range(1,n+1):
+        mulFile = Path(f"{desktop}/{folderName}/{i}_{fileName}")
+        mulFile.parent.mkdir(parents=True , exist_ok=True)
+        mulFile.touch()
+multipleFinFol()
