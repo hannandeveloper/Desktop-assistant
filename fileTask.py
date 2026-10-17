@@ -1,20 +1,22 @@
 from pathlib import Path
 
-def mAFolder():
-    FolderName = input("Enter the name of folder ")
+def mAFolder(folderName):
+    # FolderName = input("Enter the name of folder ")
     desktop = Path.home() / "Desktop"
-    folderPath= Path(f"{desktop}/{FolderName}")
+    folderPath= Path(f"{desktop}/{folderName}")
     folderPath.mkdir(parents=True , exist_ok=True)
+    return f"{folderName} folder created successfully on Desktop"
 
-def mAFile():
-    FileName = input("Enter the name of file with extension ")
+def mAFile(fileName):
+    
     desktop = Path.home() / "Desktop"
-    filePath = desktop/FileName
+    filePath = desktop/fileName
     if filePath.exists():
-        print(f"{FileName} already exists")
+        return f"{fileName} already exists on Desktop"
     else:
-         filePath.touch()
-  
+        filePath.touch()
+        return f"{fileName} created successfully on Desktop"
+
 def multipleFinFol():
     fileName = input("Enter the name of file with extension ")
     folderName = input("Enter the name of folder ")
