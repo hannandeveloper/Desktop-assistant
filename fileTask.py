@@ -1,11 +1,10 @@
 from pathlib import Path
 
+# make a folder on desktop
 def mAFolder(folderName):
-    # FolderName = input("Enter the name of folder ")
     desktop = Path.home() / "Desktop"
     folderPath= Path(f"{desktop}/{folderName}")
     folderPath.mkdir(parents=True , exist_ok=True)
-    return f"{folderName} folder created successfully on Desktop"
 
 def mAFile(fileName):
     

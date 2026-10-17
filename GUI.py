@@ -1,23 +1,21 @@
 import customtkinter
-from pathlib import Path
+from fileTask import mAFolder, mAFile, multipleFinFol
 
 
 customtkinter.set_appearance_mode("light")
-
-def mAFolder(folderName):
-    # FolderName = input("Enter the name of folder ")
-    # folderName = customtkinter.CTkEntry(app, placeholder_text="Enter folder name")
-    desktop = Path.home() / "Desktop"
-    folderPath= Path(f"{desktop}/{folderName}")
-    folderPath.mkdir(parents=True , exist_ok=True)
-    # return f"{folderName} folder created successfully on Desktop"
-
 app = customtkinter.CTk()
 app.geometry("600x400")
 
-button = customtkinter.CTkButton(app, text="create a folder", command=lambda: mAFolder(folderName.get()))
+# Take input from user for folder name and create a folder on desktop
 folderName = customtkinter.CTkEntry(app, placeholder_text="Enter folder name")
-folderName.pack(padx=20, pady=20)
+button = customtkinter.CTkButton(app, text="create a folder", command=lambda: mAFolder(folderName.get()))
+folderName.pack(padx=10, pady=10)
+button.pack(padx=20, pady=20)
+
+# Take input from user for file name and create a file on desktop
+fileName = customtkinter.CTkEntry(app, placeholder_text="Enter file name with extension")
+button = customtkinter.CTkButton(app, text="create a file", command=lambda: mAFile(fileName.get()))
+fileName.pack(padx=10, pady=10)
 button.pack(padx=20, pady=20)
 
 app.mainloop()
