@@ -6,8 +6,8 @@ def mAFolder(folderName):
     folderPath= Path(f"{desktop}/{folderName}")
     folderPath.mkdir(parents=True , exist_ok=True)
 
+# make a file on desktop
 def mAFile(fileName):
-    
     desktop = Path.home() / "Desktop"
     filePath = desktop/fileName
     if filePath.exists():
@@ -16,12 +16,10 @@ def mAFile(fileName):
         filePath.touch()
         return f"{fileName} created successfully on Desktop"
 
-def multipleFinFol():
-    fileName = input("Enter the name of file with extension ")
-    folderName = input("Enter the name of folder ")
-    n = int(input("Enter number of file "))
+# make multiple files in a folder on desktop
+def multipleFinFol(fileName_, folderName_, numFiles):
     desktop = Path.home() / "Desktop"
-    for i in range(1,n+1):
-        mulFile = Path(f"{desktop}/{folderName}/{i}_{fileName}")
+    for i in range(1, numFiles + 1):
+        mulFile = Path(f"{desktop}/{folderName_}/{i}_{fileName_}")
         mulFile.parent.mkdir(parents=True , exist_ok=True)
         mulFile.touch()
