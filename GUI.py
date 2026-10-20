@@ -1,20 +1,25 @@
 import customtkinter
+import customtkinter as ctk
 from fileTask import mAFolder, mAFile, multipleFinFol
 
 
+
+app = ctk.CTk()
 customtkinter.set_appearance_mode("light")
-app = customtkinter.CTk()
 app.geometry("1000x800")
+app.title("Desktop Assistant")
 
 # Take input from user for folder name and create a folder on desktop
+
 folderName = customtkinter.CTkEntry(app, placeholder_text="Enter folder name")
-button = customtkinter.CTkButton(app, text="create a folder", command=lambda: mAFolder(folderName.get()))
+button = customtkinter.CTkButton(app, text="create a folder", command=lambda: mAFolder(folderName.get(),label))
 folderName.pack(padx=10, pady=10)
 button.pack(padx=20, pady=20)
 
+
 # Take input from user for file name and create a file on desktop
 fileName = customtkinter.CTkEntry(app, placeholder_text="Enter file name with extension")
-button = customtkinter.CTkButton(app, text="create a file", command=lambda: mAFile(fileName.get()))
+button = customtkinter.CTkButton(app, text="create a file", command=lambda: mAFile(fileName.get(),label))
 fileName.pack(padx=10, pady=10)
 button.pack(padx=20, pady=20)
 
@@ -29,7 +34,7 @@ folderNameEntry.pack(pady=10)
 numFilesEntry = customtkinter.CTkEntry(app, placeholder_text="Number of Files")
 numFilesEntry.pack(pady=10)
 
-# 3. Define the click handler taking ZERO arguments
+
 def on_click():
     try:
         f_name = fileNameEntry.get()
@@ -41,12 +46,16 @@ def on_click():
             return
             
         multipleFinFol(f_name, f_fol, n_files)
-        print("Files and folder created successfully!")
+        label.configure(text=f"Folder created successfully!")
     except ValueError:
-        print("Please enter a valid number")
+        label.configure(text=f"Please enter a valid number")
 
-# 4. Bind the command directly with NO lambda
+
 button = customtkinter.CTkButton(app, text="create multiple files", command=on_click)
 button.pack(pady=20)
+
+
+label = ctk.CTkLabel(app, text="", font=("Arial", 14))
+label.pack(pady=30)
 
 app.mainloop()
