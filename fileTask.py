@@ -25,4 +25,3 @@ def multipleFinFol(fileName_, folderName_, numFiles ):
         mulFile = Path(f"{desktop}/{folderName_}/{i}_{fileName_}")
         mulFile.parent.mkdir(parents=True , exist_ok=True)
         mulFile.touch()
-        # label.configure(text=f"File '{i}_{fileName_}' created successfully!")
