@@ -2,7 +2,7 @@
 
 A small Windows desktop app that creates files and folders on your Desktop and lets you chat with a chatbot powered by Google Gemini. Built with Python and CustomTkinter.
 
-[Download the latest release](https://github.com/hannandeveloper/desktop-assistant/releases/download/v1.0.0/DesktopAssistant.zip) · [Report an issue](https://github.com/hannandeveloper/desktop-assistant/issues) · [Author on GitHub](https://github.com/hannandeveloper)
+[Download the latest release](https://github.com/hannandeveloper/desktop-assistant/releases/download/v1.0.0/DesktopAssistantv1.zip) · [Report an issue](https://github.com/hannandeveloper/desktop-assistant/issues) · [Author on GitHub](https://github.com/hannandeveloper)
 
 ---
 
