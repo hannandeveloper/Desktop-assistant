@@ -10,10 +10,9 @@ client = genai.Client(api_key=api)
 
 chat = client.chats.create(model="gemini-flash-latest")
 
-while True:
-    user = input("you: ")
-
-    if user.lower() == "exit":
-        break
-    reply = chat.send_message(user)
-    print(f"bot: {reply.text}")
+def askAI(message):
+    try:
+        reply = chat.send_message(message)
+        return reply.text
+    except Exception as e:
+        return f"Error: {e}"
