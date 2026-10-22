@@ -8,7 +8,7 @@ api= os.getenv("gen_api")
 
 client = genai.Client(api_key=api)
 
-chat = client.chats.create(model="gemini-flash-latest")
+chat = client.chats.create(model="gemini-flash-lite-latest")
 
 def askAI(message):
     try:

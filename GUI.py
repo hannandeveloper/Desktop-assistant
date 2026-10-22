@@ -1,7 +1,8 @@
 import customtkinter
 import customtkinter as ctk
 from fileTask import mAFolder, mAFile, multipleFinFol
-
+from chatBot import askAI
+import threading
 
 
 app = ctk.CTk()
@@ -17,7 +18,8 @@ tabview.pack(padx=20, pady=20)
 
 # 2. Add tabs (the name is the title shown on the tab)
 tabview.add("Folders")
-tabview.add("chat bot")
+tabview.add("AI Chat")
+aiTab = tabview.tab("AI Chat")
 
 #----------- code for file tasks -----------------
 
@@ -71,7 +73,43 @@ label = ctk.CTkLabel(tabview.tab("Folders"),text="", font=("Arial", 14))
 label.pack(pady=30)
 
 #-------------- code for chat bot ---------------
-label = ctk.CTkLabel(tabview.tab("chat bot"),text="this tab contains the chat bot", font=("Arial", 14))
-label.pack(pady=30)
+
+# Where the conversation is shown
+chatBox = ctk.CTkTextbox(aiTab, width=800, height=400, wrap="word")
+chatBox.pack(padx=10, pady=10)
+chatBox.configure(state="disabled")  # read-only
+
+# Where the user types
+chatEntry = ctk.CTkEntry(aiTab, width=650, placeholder_text="Ask something...")
+chatEntry.pack(side="left", padx=(10, 5), pady=10)
+
+def addMessage(text):
+    chatBox.configure(state="normal")
+    chatBox.insert("end", text)
+    chatBox.see("end")
+    chatBox.configure(state="disabled")
+
+def showReply(answer):
+    addMessage(f"Bot: {answer}\n\n")
+    sendButton.configure(state="normal")
+
+def sendMessage(event=None):
+    user = chatEntry.get().strip()
+    if not user:
+        return
+    chatEntry.delete(0, "end")
+    addMessage(f"You: {user}\n")
+    sendButton.configure(state="disabled")
+
+    def worker():
+        answer = askAI(user)
+        app.after(0, lambda: showReply(answer))
+
+    threading.Thread(target=worker, daemon=True).start()
+
+sendButton = ctk.CTkButton(aiTab, text="Send", width=100, command=sendMessage)
+sendButton.pack(side="left", padx=5, pady=10)
+
+chatEntry.bind("<Return>", sendMessage)  # Enter key also sends
 
 app.mainloop()
